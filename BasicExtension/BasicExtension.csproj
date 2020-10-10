@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <Authors>Ryohei Hayafuji</Authors>
     <Description>.NETの基本クラスの機能拡張を行います。</Description>
     <Copyright>Ryohei Hayafuji</Copyright>
@@ -12,7 +12,7 @@
     <Summary>.NETの基本クラスの機能拡張を行います。</Summary>
     <PackageTags>拡張メソッド</PackageTags>
     <PackOnBuild>true</PackOnBuild>
-    <PackageProjectUrl>https://www.nuget.org/packages/BasicExtension/</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ryohei0109-develop/BasicExtension/tree/master/BasicExtension</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

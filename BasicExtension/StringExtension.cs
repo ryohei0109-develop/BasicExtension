@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace BasicExtension
 {
@@ -282,6 +283,24 @@ namespace BasicExtension
             }
 
             return ret;
+        }
+
+        /// <summary>
+        /// JSONを指定し、指定したクラスインスタンスに変換します。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="arg">JSONを指定します。</param>
+        /// <returns></returns>
+        public static T ToObject<T>(this string arg)
+        {
+            T result = default;
+
+            if (string.IsNullOrEmpty(arg) == false)
+            {
+                result = JsonConvert.DeserializeObject<T>(arg);
+            }
+
+            return result;
         }
 
         /// <summary>
