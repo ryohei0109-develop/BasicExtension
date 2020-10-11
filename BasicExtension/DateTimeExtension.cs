@@ -10,37 +10,47 @@ namespace BasicExtension
         /// <summary>
         /// 月の最初の日を求める（DateTime版）
         /// </summary>
-        /// <param name="theDay">DateTime型のクラスを指定します。</param>
+        /// <param name="dateTime">DateTime型のクラスを指定します。</param>
         /// <returns>月の最初の日を返します。</returns>
-        public static DateTime GetFirstDayOfMonth(this DateTime theDay)
+        public static DateTime GetFirstDateOfMonth(this DateTime dateTime)
         {
-            return new DateTime(theDay.Year, theDay.Month, 1, 0, 0, 0);
+            return new DateTime(dateTime.Year, dateTime.Month, 1, 0, 0, 0);
         }
 
         /// <summary>
         /// 月の最後の日を求める（DateTime版）
         /// </summary>
-        /// <param name="theDay">DateTime型のクラスを指定します。</param>
+        /// <param name="dateTime">DateTime型のクラスを指定します。</param>
         /// <returns>月の最後の日を返します。</returns>
-        public static DateTime GetLastDayOfMonth(this DateTime theDay)
+        public static DateTime GetLastDateOfMonth(this DateTime dateTime)
         {
-            int days = DateTime.DaysInMonth(theDay.Year, theDay.Month);
-            return new DateTime(theDay.Year, theDay.Month, days);
+            int days = DateTime.DaysInMonth(dateTime.Year, dateTime.Month);
+            return new DateTime(dateTime.Year, dateTime.Month, days);
         }
 
         // 月の最初の日を求める（DateTimeOffset版）
-        public static DateTimeOffset GetFirstDayOfMonth(this DateTimeOffset theDay)
+        public static DateTimeOffset GetFirstDateOfMonth(this DateTimeOffset dateTime)
         {
-            return new DateTimeOffset(theDay.Year, theDay.Month, 1,
-                                      0, 0, 0, theDay.Offset);
+            return new DateTimeOffset(dateTime.Year, dateTime.Month, 1,
+                                      0, 0, 0, dateTime.Offset);
         }
 
         // 月の最後の日を求める（DateTimeOffset版）
-        public static DateTimeOffset GetLastDayOfMonth(this DateTimeOffset theDay)
+        public static DateTimeOffset GetLastDateOfMonth(this DateTimeOffset dateTime)
         {
-            int days = DateTime.DaysInMonth(theDay.Year, theDay.Month);
-            return new DateTimeOffset(theDay.Year, theDay.Month, days,
-                                      0, 0, 0, theDay.Offset);
+            int days = DateTime.DaysInMonth(dateTime.Year, dateTime.Month);
+            return new DateTimeOffset(dateTime.Year, dateTime.Month, days,
+                                      0, 0, 0, dateTime.Offset);
+        }
+
+        /// <summary>
+        /// 週初め(日曜日)の日付を計算
+        /// </summary>
+        /// <param name="dateTime">DateTime型のクラスを指定します。</param>
+        /// <returns>週の最初の日(日曜日)を返します。</returns>
+        public static DateTime GetFirstDateOfWeek(this DateTime dateTime)
+        {
+            return dateTime.AddDays(DayOfWeek.Sunday - dateTime.DayOfWeek);
         }
 
         /// <summary>
