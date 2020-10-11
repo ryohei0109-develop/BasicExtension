@@ -19,18 +19,14 @@ namespace BasicExtension
         /// <returns>NULLの場合は空文字を、そうでない場合は引数をそのまま返します。</returns>
         public static string ToStringOrEmpty(this string arg)
         {
-            string ret = string.Empty;
             if (arg != null)
             {
-                ret = arg;
+                return arg;
             }
-
-            return ret;
-        }
-
-        public static string[] Split(this string arg, string splitValue)
-        {
-            return arg.Split(new[] { splitValue }, StringSplitOptions.RemoveEmptyEntries);
+            else
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -42,15 +38,15 @@ namespace BasicExtension
         /// <returns>チェック後の文字列を返します。</returns>
         public static string ToStringOrDefaultValue(this string arg, string defaultValue)
         {
-            string ret = arg;
-
             bool isNullOrEmpty = string.IsNullOrEmpty(arg);
-            if (isNullOrEmpty == true)
+            if (isNullOrEmpty == false)
             {
-                ret = defaultValue;
+                return arg;
             }
-
-            return ret;
+            else
+            {
+                return defaultValue;
+            }
         }
 
         /// <summary>
@@ -61,9 +57,7 @@ namespace BasicExtension
         /// <returns>キャスト不可能な場合は0を、キャスト可能な場合はキャストした数値を返します。</returns>
         public static int ToIntOrZero(this string arg)
         {
-            int ret = 0;
-
-            int.TryParse(arg, out ret);
+            int.TryParse(arg, out int ret);
 
             return ret;
         }
@@ -77,16 +71,15 @@ namespace BasicExtension
         /// <returns>キャスト不可能な場合は指定したデフォルト値を、キャスト可能な場合はキャストした数値を返します。</returns>
         public static int ToIntOrDefault(this string art, int defaultValue)
         {
-            int ret = defaultValue;
-
-            int result = 0;
-            bool isInt = int.TryParse(art, out result);
+            bool isInt = int.TryParse(art, out int result);
             if (isInt == true)
             {
-                ret = result;
+                return result;
             }
-
-            return ret;
+            else
+            {
+                return defaultValue;
+            }
         }
 
         /// <summary>
@@ -97,37 +90,15 @@ namespace BasicExtension
         /// <returns>キャスト不可能な場合はNULLを、キャスト可能な場合はキャストした数値を返します。</returns>
         public static int? ToIntOrNull(this string arg)
         {
-            int? ret = null;
-
-            int result = 0;
-            bool isIint = int.TryParse(arg, out result);
+            bool isIint = int.TryParse(arg, out int result);
             if (isIint == true)
             {
-                ret = result;
+                return result;
             }
-
-            return ret;
-        }
-
-        /// <summary>
-        /// 文字列を真偽値にキャストします。
-        /// キャストできない場合は、指定したデフォルト値を返します。
-        /// </summary>
-        /// <param name="arg">チェック対象の文字列を指定します。</param>
-        /// <param name="arg">数字に変換できない際の返り値を指定します。</param>
-        /// <returns>キャスト不可能な場合は指定したデフォルト値を、キャスト可能な場合はキャストした真偽値を返します。</returns>
-        public static bool ToBoolOrDefault(this string arg, bool defaultValue)
-        {
-            bool ret = defaultValue;
-
-            bool result = false;
-            bool isInt = bool.TryParse(arg, out result);
-            if (isInt == true)
+            else
             {
-                ret = result;
+                return null;
             }
-
-            return ret;
         }
 
         /// <summary>
@@ -149,6 +120,37 @@ namespace BasicExtension
         }
 
         /// <summary>
+        /// 文字列を真偽値にキャストします。
+        /// キャストできない場合は、指定したデフォルト値を返します。
+        /// </summary>
+        /// <param name="arg">チェック対象の文字列を指定します。</param>
+        /// <param name="arg">数字に変換できない際の返り値を指定します。</param>
+        /// <returns>キャスト不可能な場合は指定したデフォルト値を、キャスト可能な場合はキャストした真偽値を返します。</returns>
+        public static bool ToBoolOrDefault(this string arg, bool defaultValue)
+        {
+            bool isInt = bool.TryParse(arg, out bool result);
+            if (isInt == true)
+            {
+                return result;
+            }
+            else
+            {
+                return defaultValue;
+            }
+        }
+
+        /// <summary>
+        /// 文字列を指定して分割を行います。
+        /// </summary>
+        /// <param name="arg">分割対象の文字列を指定します。</param>
+        /// <param name="splitValue">分割文字列を指定します。</param>
+        /// <returns>分割後の文字列を配列で返します。</returns>
+        public static string[] Split(this string arg, string splitValue)
+        {
+            return arg.Split(new[] { splitValue }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        /// <summary>
         /// NULLチェックを行い、Split()処理を行います。
         /// </summary>
         /// <param name="arg">\分割対象の文字列を指定します。</param>
@@ -156,14 +158,14 @@ namespace BasicExtension
         /// <returns>分割後の文字列をリストで返します。</returns>
         public static List<string> SplitWithNullCheck(this string arg, char separator)
         {
-            List<string> result = new List<string>();
-
             if (arg != null)
             {
-                result = arg.Split(separator).ToList();
+                return arg.Split(separator).ToList();
             }
-
-            return result;
+            else
+            {
+                return new List<string>();
+            }
         }
 
         /// <summary>
@@ -175,32 +177,24 @@ namespace BasicExtension
         {
             if (arg != null)
             {
-                arg = arg.Trim();
+                return arg.Trim();
             }
-
-            return arg;
-        }
-
-        public static List<string> SplitByString(this string arg, string separator)
-        {
-            List<string> ret = new List<string>();
-
-            if (arg != null)
+            else
             {
-                ret = arg.Split(new string[] { separator }, StringSplitOptions.None).ToList();
+                return null;
             }
-
-            return ret;
         }
 
         public static string ReplaceWithNullCheck(this string arg, string beforeValue, string afterValue)
         {
             if (arg != null)
             {
-                arg = arg.Replace(beforeValue, afterValue);
+                return arg.Replace(beforeValue, afterValue);
             }
-
-            return arg;
+            else
+            {
+                return null;
+            }
         }
 
         public static string RegexReplace(this string arg, string pattern, string afterValue)
@@ -208,10 +202,12 @@ namespace BasicExtension
             if (arg != null)
             {
                 Regex regex = new Regex(pattern);
-                arg = regex.Replace(arg, afterValue);
+                return regex.Replace(arg, afterValue);
             }
-
-            return arg;
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -223,14 +219,12 @@ namespace BasicExtension
         {
             if (arg == null)
             {
-                arg = "";
+                return string.Empty;
             }
             else
             {
-                arg = arg.Replace("−", "-");
+                return arg.Replace("−", "-");
             }
-
-            return arg;
         }
 
         /// <summary>
@@ -293,32 +287,13 @@ namespace BasicExtension
         /// <returns></returns>
         public static T ToObject<T>(this string arg)
         {
-            T result = default;
-
             if (string.IsNullOrEmpty(arg) == false)
             {
-                result = JsonConvert.DeserializeObject<T>(arg);
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// ニッセンAPIのレスポンスを、C#のクラスにシリアライズできるように置換します。
-        /// </summary>
-        /// <param name="arg">ニッセンAPIのレスポンスを指定します。</param>
-        /// <returns>置換後のニッセンAPIのレスポンスを返します。</returns>
-        public static string FormatNissenApiresponse(this string arg)
-        {
-            if (arg != null)
-            {
-                string pattern = " xsi:type=.*>";
-                Regex regex = new Regex(pattern);
-                return regex.Replace(arg, ">");
+                return JsonConvert.DeserializeObject<T>(arg);
             }
             else
             {
-                return arg;
+                return default;
             }
         }
 
@@ -326,7 +301,7 @@ namespace BasicExtension
         /// ファイルパスを指定し、ディレクトリが存在しない場合は、作成します。
         /// </summary>
         /// <param name="arg">チェック対象のファイルパスを指定します。</param>
-        public static string CreateDirectory(this string arg)
+        public static void CreateDirectory(this string arg)
         {
             if (string.IsNullOrEmpty(arg) == false)
             {
@@ -336,73 +311,6 @@ namespace BasicExtension
                     Directory.CreateDirectory(directoryName);
                 }
             }
-
-            return arg;
-        }
-
-        public static int CountOf(this string target, params string[] strArray)
-        {
-            int count = 0;
-
-            foreach (string str in strArray)
-            {
-                int index = target.IndexOf(str, 0);
-                while (index != -1)
-                {
-                    count++;
-                    index = target.IndexOf(str, index + str.Length);
-                }
-            }
-
-            return count;
-        }
-
-        public static string ParseRegex(this string input, string pattern)
-        {
-            string ret = "";
-
-            Regex regex = new Regex(pattern);
-            Match match = regex.Match(input);
-            if (match.Success == true)
-            {
-                ret = match.Groups[1].Value;
-            }
-
-            return ret;
-        }
-
-        public static string AddCrValue(this string input, string addValue)
-        {
-            if (string.IsNullOrEmpty(addValue) == false)
-            {
-                if (string.IsNullOrEmpty(input) == false)
-                {
-                    input += "\n\n";
-                }
-
-                input += addValue;
-            }
-
-            return input;
-        }
-
-        public static string SubstringExtension(this string arg, int index, int length)
-        {
-            string ret = "";
-
-            if (arg != null)
-            {
-                if (arg.Length >= (index + length))
-                {
-                    ret = arg.Substring(index, length);
-                }
-                else if (arg.Length >= index)
-                {
-                    ret = arg.Substring(index);
-                }
-            }
-
-            return ret;
         }
 
         public static int Count(this string arg, string searchWord)
@@ -425,6 +333,39 @@ namespace BasicExtension
             }
 
             return count;
+        }
+
+        public static string ParseRegex(this string input, string pattern)
+        {
+            Regex regex = new Regex(pattern);
+            Match match = regex.Match(input);
+            if (match.Success == true)
+            {
+                return match.Groups[1].Value;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string SubstringExtension(this string arg, int index, int length)
+        {
+            string ret = "";
+
+            if (arg != null)
+            {
+                if (arg.Length >= (index + length))
+                {
+                    ret = arg.Substring(index, length);
+                }
+                else if (arg.Length >= index)
+                {
+                    ret = arg.Substring(index);
+                }
+            }
+
+            return ret;
         }
     }
 }

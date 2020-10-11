@@ -17,12 +17,13 @@ namespace BasicExtension
             => source.GroupBy(i => i).SelectMany(g => g.Skip(1)).Any();
 
         /// <summary>
-        /// リストを指定し、カンマ区切りの文字列に変換します。
+        /// リストを指定した文字列で連結します。
         /// </summary>
         /// <typeparam name="T">型を指定します。</typeparam>
         /// <param name="list">変換対象のリストを指定します。</param>
-        /// <returns>リストをカンマ区切りで連結した文字列を返します。</returns>
-        public static string ToCommaString<T>(this IEnumerable<T> list)
+        /// <param name="separator">連結文字列を指定します。</param>
+        /// <returns>連結後の文字列を返します。</returns>
+        public static string ToStringJoin<T>(this IEnumerable<T> list, string separator)
         {
             if (list != null)
             {

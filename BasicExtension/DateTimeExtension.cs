@@ -61,14 +61,14 @@ namespace BasicExtension
         /// <returns>日付オブジェクトがNULLの場合は空文字を、そうでない場合は指定したフォーマットの文字列を返します。</returns>
         public static string ToString(this DateTime? arg, string format)
         {
-            string ret = string.Empty;
-
             if (arg != null)
             {
-                ret = arg.Value.ToString(format);
+                return arg.Value.ToString(format);
             }
-
-            return ret;
+            else
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>
