@@ -27,7 +27,7 @@ namespace BasicExtension
         {
             if (list != null)
             {
-                return string.Join(",", list);
+                return string.Join(separator, list);
             }
             else
             {

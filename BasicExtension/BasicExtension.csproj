@@ -2,9 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>2.0.1</PackageVersion>
     <Authors>Ryohei Hayafuji</Authors>
-    <Description>.NETの基本クラスの機能拡張を行います。</Description>
+    <Description>.NETの基本クラスの拡張機能を提供します。
+(Provides extensions to .NET base classes.)
+
+サンプルは以下プロジェクトをご参照下さい。
+(Sample is referense this project.)
+https://github.com/ryohei0109-develop/BasicExtension/tree/master/BasicExtension.Sample</Description>
     <Copyright>Ryohei Hayafuji</Copyright>
     <Owners>Ryohei Hayafuji</Owners>
     <Title>BasicExtension</Title>
@@ -12,10 +17,10 @@
     <Summary>.NETの基本クラスの機能拡張を行います。</Summary>
     <PackageTags>拡張メソッド</PackageTags>
     <PackOnBuild>true</PackOnBuild>
-    <PackageProjectUrl>https://github.com/ryohei0109-develop/BasicExtension/tree/master/BasicExtension</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ryohei0109-develop/BasicExtension</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 </Project>
